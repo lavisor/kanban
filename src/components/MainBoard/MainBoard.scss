@@ -1,0 +1,38 @@
+@import "./../../variables.scss";
+
+.main-board-container{
+    display: flex;
+    flex-direction:row;
+    min-width: 800px;
+    
+    .task-status-container{
+        flex-grow:1;
+        margin:16px;
+        height:100%;
+
+        span {
+            color:$primary-border-color;
+            font-size: 13px;
+            letter-spacing: 3px;
+        }
+
+        .todo-circle {
+            color: $status-todo-color;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+
+        .doing-circle {
+            color: $status-doing-color;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+
+        .done-circle {
+            color: $status-done-color;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+
+    }
+}

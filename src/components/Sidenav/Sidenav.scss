@@ -1,0 +1,74 @@
+@import './../../variables.scss';
+
+.sidenav-contianer {
+    position:fixed;
+    top:0;
+    height: 100%;
+    min-width: 300px;
+    background: $primary-header-color;
+    padding: 0px 30px;
+    border-right: 1px solid $primary-border-color;
+    transition: all 0.3s ease-in;
+
+    &-header {
+        display:flex;
+        // display:flex;  for mobile
+        padding: 10px 0px;
+        margin-left:-10px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+
+        .fa-bars {
+            transform: rotate(90deg);
+            margin: 10px 10px 10px 10px;
+            font-size: 19px;
+        }
+    
+        span {
+            font-size: 32px;
+            font-weight: bold;
+            margin-left: 12px;
+        }
+
+
+        .menu-Button{
+            padding: 10px 14px;
+            border-radius: 10px;
+            position: relative;
+            left: 134px;
+            font-size: 22px;
+            background: $primary-header-color;
+            cursor:pointer;
+            transition: all 0.3s ease-in;
+
+            .fa-arrow-right{
+                transform: rotateZ(180deg);
+            }
+        }
+
+        .menu-Button-open {
+            left:173px;
+            color:#000;
+            background:$primary-font-color; 
+            .fa-arrow-right{
+                transform: rotateZ(0deg);
+            }
+        }
+        
+    }
+
+
+    &-menus {
+        .heading {
+            font-size: 12px;
+            letter-spacing: 3px;
+            display: block;
+            margin: 0px 0px 16px 0px;
+        }
+    }
+}
+
+
+.side-nav-hidden{
+    transform: translateX(-360px)
+}

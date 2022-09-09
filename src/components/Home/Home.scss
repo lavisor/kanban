@@ -1,0 +1,27 @@
+.home-component {
+    display: flex;
+    flex-grow: 1;
+}
+
+.main-container {
+    flex-grow: 1;
+    margin-left: 360px;
+    overflow: auto;
+    transition: all 0.3s ease-in;
+}
+
+.remove-margin{
+    margin-left: 0px;
+}
+
+.inside-component {
+    max-height: 100%;
+    max-width: 100%;
+    overflow:auto;
+
+
+    .content{
+        height:1000px;
+        width:1200px;
+    }
+}

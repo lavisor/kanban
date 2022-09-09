@@ -1,0 +1,31 @@
+@import './../../variables.scss';
+
+.header-container{
+    background: $primary-header-color;
+    display:flex;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid $primary-border-color;
+
+    &-navicon{
+        display:flex;
+        padding:10px;
+        margin-left: 10px;
+
+        .fa-bars{
+            transform: rotate(90deg);
+            margin: 10px 10px 10px 10px;
+            font-size: 19px;
+        }
+
+        span {
+            font-size: 25px;
+            font-weight: bold;
+        }
+    }
+
+
+    &-navbuttons{
+        display:flex;
+    }
+}

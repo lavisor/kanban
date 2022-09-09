@@ -1,0 +1,20 @@
+@import "../../../variables.scss";
+
+.task-card{
+    margin:10px 0px;
+    padding: 16px;
+    border-radius: 5px;
+    background: $primary-header-color;
+    box-shadow: $default-box-shadow;
+    cursor: pointer;
+
+    .task-title{
+        font-size: 16px;
+        margin: 6px 0px;
+    }
+
+    .task-remaining{
+        font-size: 13px;
+        color: $primary-border-color;
+    }
+}

@@ -1,0 +1,30 @@
+@import './variables.scss';
+
+body{
+    color: $primary-font-color;
+}
+
+.App{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+button{
+    height:40px;
+    min-width: 100px;
+    background: $primary-color-purple;
+    border: none;
+    color:$primary-font-color;
+    font-weight: bold;
+    border-radius: 40px;
+    margin: 8px;
+    padding: 0px 18px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    box-shadow: $default-box-shadow;
+}
+
+button:hover{
+    background: $primary-dark-blue;
+}
