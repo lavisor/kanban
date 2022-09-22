@@ -28,3 +28,24 @@ button{
 button:hover{
     background: $primary-dark-blue;
 }
+
+input[type="text"] , select {
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+    background: #2c2c38;
+    border: 1px solid #5e5e5e;
+    border-radius: 4px;
+    color: $primary-font-color;
+}
+
+textarea{
+    height:150px;
+    padding: 8px;
+    font-size: 14px;
+    width: 100%;
+    background: #2c2c38;
+    border: 1px solid #5e5e5e;
+    border-radius: 4px; 
+    color: $primary-font-color;
+}

@@ -1,22 +1,83 @@
 import "./Popup.scss";
 
-function Popup({header , footer , content , showPopup }){
+function Popup({showPopup , handleClickOutside }){
+
+
+    const titlePlaceHolder = "e.g. Take coffee break";
+    const subtaskPlaceHolder = "e.g. Make coffee";
+    const descriptionPlaceholder = "e.g. It's always good to take a break. This 15 minute break will recharge the batteries a little.";
+
+    function stopPropagation(event){
+        event.preventDefault();
+        event.stopPropagation();
+    }
 
     if(showPopup){
+        document.getElementsByTagName("body")[0].style.overflow = "hidden";
         return(
             <>
-                <div className="popup-backdrop">
-    
+                <div className="popup-backdrop" onClick={handleClickOutside} >
                 </div>
-                <div className="popup-container">
-                    <div clasName="popup-container-header"> {header} </div>
-                    <div clasName="popup-container-content"> Content</div>
-                    <div clasName="popup-container-footer"> Footer </div>
+                <div className="popup-container" onClick={handleClickOutside}>
+                    <div className="popup-actual" onClick={stopPropagation}> 
+                            <div className="header">
+                                Add New Task
+                            </div>
+                      
+                            <div className="form-item">
+                                <div className="label-container">
+                                    Title
+                                </div>
+                                <div className="input-container">
+                                    <input id="titleInput" type="text" placeholder={titlePlaceHolder} />
+                                </div>
+                            </div>
+
+                            <div className="form-item">
+                                <div className="label-container">
+                                    Description
+                                </div>
+                                <div className="input-container">
+                                    <textarea id="descriptionInput" type="text" placeholder={descriptionPlaceholder} value=""> </textarea>
+                                </div>
+                            </div>
+
+                            <div className="form-item">
+                                <div className="label-container">
+                                    Subtask
+                                </div>
+                                <div className="subTasks">
+
+                                </div>
+                                <div className="input-container" >
+                                    <input id="subtaskInput" type="text" placeholder={subtaskPlaceHolder} /> <button className="add-subtask-button"> Add subtask </button>
+                                </div>
+                            </div>
+
+                            <div className="form-item">
+                                <div className="label-container">
+                                    Status
+                                </div>
+                                <div className="input-container">
+                                    <select id="subtaskInput" type="text" placeholder={subtaskPlaceHolder} > 
+                                        <option name="taskStatus" selected value="todo"> Todo </option>
+                                        <option name="taskStatus" value="doing"> Doing </option>
+                                        <option name="taskStatus" value="done"> Done </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="form-item">
+                               <button> Create Task</button>
+                            </div>
+
+                        </div>
+                    
                 </div>
             </>
     
         )
     } else {
+        document.getElementsByTagName("body")[0].style.overflow = "auto";
         return null;
     }
 

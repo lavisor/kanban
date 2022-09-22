@@ -1,0 +1,69 @@
+@import "./../../variables.scss";
+
+.popup-backdrop{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    top: 0;
+    opacity: 0.6;
+    z-index: 1000;
+}
+
+.popup-container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: table;
+    z-index: 10001;
+}
+
+.popup-actual{
+    max-width: 450px;
+    margin: 0 auto;
+    background: $primary-header-color;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: $default-box-shadow;
+
+    .header{
+        font-size: 16px;
+        line-height: 24px;
+        margin: 0px 0px 16px 0px;
+    }
+
+    .input-container{
+        display:flex;
+
+        input, textarea{
+            flex-grow: 1;
+        }
+    }
+
+    .form-item{
+        width: 100%;
+        margin-bottom: 12px;
+
+        .label-container{
+            margin-bottom: 6px;
+            font-size: 12px;
+        }
+
+        button{
+            width: 100%;
+            margin: 16px 0px 0px 0px;
+        }
+
+        .add-subtask-button{
+            max-width: 125px;
+            background:$primary-font-color;
+            color:$primary-color-purple;
+            margin: 0px 0px 0px 10px;
+        }
+
+        .add-subtask-button:hover{
+            color:$primary-font-color;
+            background:$primary-color-purple;
+        }
+    }
+}
