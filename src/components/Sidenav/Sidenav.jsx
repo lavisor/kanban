@@ -1,14 +1,12 @@
 import './Sidenav.scss';
 import BoardWrapper from "./BoardWrapper/BoardWrapper";
 import { useState } from "react";
-
+import { dummyBoards } from "../../constants/constants";
+// import { BoardContext } from '../../context/board-context';
 
 function Sidenav(){
-    const [ boardList , setBoardList ] = useState([
-        {name:"PlatForm Launch", id: 1, isActive: true},
-        {name:"Marketing Plan", id: 2, isActive: false},
-        {name:"Roadmap", id: 3 , isActive: false}
-    ]);
+
+    const [boardList, setBoardList] = useState(dummyBoards);
 
     const [sidenavOpen , setSidenavOpen] = useState(false);
 
@@ -45,6 +43,7 @@ function Sidenav(){
     }
 
     return(
+        
         <div id="sidenav" className="sidenav-contianer">
             <div className="sidenav-contianer-header">
                 <i className="fa-sharp fa-solid fa-bars"></i>
@@ -56,7 +55,7 @@ function Sidenav(){
                 <span className="heading">
                     ALL BOARDS (8)
                 </span>
-                <BoardWrapper menu={boardList} setActive={setActive}/>
+                    <BoardWrapper menu={boardList} setActive={setActive}/>
             </div>
         </div>
     )

@@ -1,14 +1,10 @@
-import Header from "./components/Header/Header";
-import Home from "./components/Home/Home";
-
-
+import MainRoute from "./components/MainRoute/MainRoute";
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Home />
+      <MainRoute />
     </div>
   );
 }

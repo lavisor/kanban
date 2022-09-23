@@ -2,6 +2,7 @@ import { useState } from "react";
 import Sidenav from "./../Sidenav/Sidenav";
 import MainBoard from "./../MainBoard/MainBoard";
 import Popup from "../Popup/Popup";
+import AddTask from "../AddTask/AddTask";
 import "./Home.scss";
 function Home(){
 
@@ -30,7 +31,8 @@ function Home(){
       </div>
 
        {/* add popup here */}
-       <Popup showPopup={popupAction} handleClickOutside={closePopup}/>
+       <Popup showPopup={popupAction} handleClickOutside={closePopup} children={<AddTask/>}> 
+       </Popup>
     </div>
   )
 }

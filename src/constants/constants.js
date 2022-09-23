@@ -23,4 +23,10 @@ const dummyTask = [
     { "id": 22, "title": "Build UI for onboarding flow"  , "description": "Complete all design and work on building UI for onboarding new clients to our project", "subtask": [{ "title":"Create Task_1" , "isActive": true} , { "title":"Create Task_2" , "isActive": true} , { "title":"Create Task_3" , "isActive": false }] , "status": "done" }
 ];
 
-export {dummyTask} 
+const dummyBoards = [
+    { "id": 1, "name":"Platform Launch", isActive: true}, 
+    { "id": 2, "name":"Market Plan", isActive: false}, 
+    { "id": 3, "name":"Roadmap", isActive: false}
+]
+
+export {dummyTask, dummyBoards} 
