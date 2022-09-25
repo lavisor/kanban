@@ -1,8 +1,15 @@
 import { useNavigate   } from 'react-router-dom';
+import { useAuthValue } from '../../context/Auth-context';
 import './Header.scss'
 
 function Header(){
   const navigate = useNavigate();
+
+  function getUserDetails(){
+    //const {currentUser} = useAuthValue();
+    //console.log("Current User: ", currentUser);
+  }
+
 
   function navigateToLogin(){
     console.log("this will navigate to login page. ");

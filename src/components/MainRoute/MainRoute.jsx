@@ -4,16 +4,31 @@ import Login from "../UserMangement/Login/Login";
 import Register from "../UserMangement/Register/Register";
 import LandingPage from "../LandingPage/LandingPage";
 import ForgotPassword from "../UserMangement/ForgotPassword/ForgotPassword";
+
 import {   BrowserRouter as Router,
     Routes ,
     Route,
     Link} from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import {AuthProvider} from '../../context/Auth-context';
+import { onAuthStateChanged} from 'firebase/auth';
+import { auth } from "../../Firebase/firebase-config";
 
 function MainRoute(){
+
+    const [ currentUser , setCurrentUser ] = useState(null);
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+          setCurrentUser(user)
+         })
+    }, []);
+
     return (
         <>
             <Router>
-            <Header />
+                <AuthProvider value={{currentUser}}>
+                <Header />
                 <Routes>
                 <Route exact path="/" element={<LandingPage/>}/>
                 <Route exact path="/login" element={<Login/>}/>
@@ -21,7 +36,7 @@ function MainRoute(){
                 <Route exact path="/board" element={<Home/>}/>
                 {/* <Route path="*" element={<NotFound/>}/> */}
                 </Routes>
-
+                </AuthProvider>
             </Router>
         </>
     )
