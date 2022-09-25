@@ -1,0 +1,22 @@
+@import "../../variables.scss";
+
+
+#card {
+    background: $primary-dark-blue;
+    border-radius: 8px;
+    box-shadow: $default-box-shadow;
+    height: auto;
+    width: 500px;
+    color: #fff;
+  }
+  #card-content {
+    padding: 12px 44px;
+  }
+  #card-title {
+    font-family: "Raleway Thin", sans-serif;
+    letter-spacing: 4px;
+    padding-bottom: 23px;
+    padding-top: 13px;
+    text-align: center;
+    color: #fff;;
+  }
