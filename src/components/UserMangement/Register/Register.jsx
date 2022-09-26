@@ -1,5 +1,5 @@
 import "./Register.scss";
-
+import Card from "./../../Card/Card";
 function Register(){
 
     return(
@@ -10,46 +10,47 @@ function Register(){
                 <h3>Welcome to Dragonstone</h3>
               </div>
               <div className="right">
-              <div id="card">
-    <div id="card-content">
-      <div id="card-title">
-        <h2>REGISTER</h2>
-        <div className="underline-title"></div>
-      </div>
-      <form method="post" className="form">
-      <label>
-            &nbsp;First Name
-          </label>
-        <input id="user-email" className="form-content" type="email" name="email"  />
-       
-        <label>
-            &nbsp;Last Name
-          </label>
-        <input id="user-email" className="form-content" type="email" name="email"  />
-       
-        <label>
-            &nbsp;Email
-          </label>
-        <input id="user-email" className="form-content" type="email" name="email"  />
-        
-        <label>&nbsp;Password
-          </label>
-        <input id="user-password" className="form-content" type="password" name="password"  />
-
-        <label>&nbsp;Confirm Password
-          </label>
-        <input id="user-password" className="form-content" type="password" name="password"  />
+          
+      <Card title={"REGISTER"}>
+      <form  className="form">
+     
+     <input id="user-email" className="form-content" type="email"
+     placeholder="Please enter your first name."
+     name="email"  />
     
+   <br></br>
+     <input id="user-email" className="form-content" type="email" 
+     placeholder="Please enter your last name."
+     name="email"  />
+    
+     
+     <br></br>
+     <input id="user-email" className="form-content" type="email" 
+     placeholder="Please enter your email address."
+     name="email"  />
+     
+    <br></br>
+     <input id="user-password" className="form-content" type="password"
+     placeholder="Enter your password."
+      name="password"  />
+
+     <br></br>
+     <input id="user-password" className="form-content" type="password" 
+     placeholder="Confirm Password"
+     name="password"  />
+ 
+    
+  
+     <br></br>
+     <button type="submit">Sign Up</button>
+     <small>
+                By Clicking on the button you are agreeing to our <a href="#" id="signup">tearms and conditions.</a>
+              </small>
+   </form>
+      </Card>
        
      
-        <br></br>
-        <button type="submit">Sign Up</button>
-       
-      </form>
-    </div>
-  </div>
-                </div>
-            
+            </div>
               </div>
         </>
     )
