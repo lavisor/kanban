@@ -3,13 +3,13 @@ import Card from "../../Card/Card";
 function Login() {
   return (
     <>
-      <div className="wrapper">
+      <div className="login-wrapper">
         <div className="left">
-          <h1>Game of Thrones</h1>
-          <h3>Welcome to Dragonstone</h3>
+          <span className="header-left">Learn to code by watching others</span>
+          <span className="info-left">See how experienced developer solve problems in real-time. Watching scripted tutorial is great but understanding how developer think is invaluable.</span>
         </div>
         <div className="right">
-          <Card title={"LOGIN"}>
+          <Card title={"LOGIN"} className="login-card">
             <form className="form">
               <input
                 id="user-email"

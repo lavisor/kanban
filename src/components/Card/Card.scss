@@ -2,12 +2,12 @@
 
 
 #card {
-    background: $primary-dark-blue;
+    background: $primary-header-color;
     border-radius: 8px;
-    box-shadow: $default-box-shadow;
     height: auto;
-    width: 500px;
+    width: 100%;
     color: #fff;
+    box-shadow: $default-box-shadow;
   }
   #card-content {
     padding: 12px 44px;
