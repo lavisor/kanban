@@ -1,9 +1,20 @@
 import { useNavigate   } from 'react-router-dom';
 import { useAuthValue } from '../../context/Auth-context';
-import './Header.scss'
+import './Header.scss';
+import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import {useEffect,useState} from 'react';
 
 function Header(){
   const navigate = useNavigate();
+  const params = useParams();
+  const location = useLocation();
+  console.log(location)
+const isLogInPage = location.pathname.includes('login');
+const isRegisterPage = location.pathname.includes('register');
+console.log(isLogInPage);
+  
+  console.log(params);
 
   function getUserDetails(){
     //const {currentUser} = useAuthValue();
@@ -34,8 +45,13 @@ function Header(){
       </div>
       <div className="header-container-navbuttons">
 
-        <button onClick={navigateToLogin}> Login </button>
-        <button onClick={navigateToSignUp}> Signup </button>
+{!isLogInPage &&
+ <button onClick={navigateToLogin}> Login </button>
+ 
+ }
+{!isRegisterPage &&
+    <button onClick={navigateToSignUp}> Signup </button>   
+}
       </div>
 
     </div>
