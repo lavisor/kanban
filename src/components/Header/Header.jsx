@@ -1,20 +1,11 @@
+import { useContext } from "react";
 import { useNavigate   } from 'react-router-dom';
-import { useAuthValue } from '../../context/Auth-context';
-import './Header.scss';
-import { useParams } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import {useEffect,useState} from 'react';
+import  AuthContext from '../../context/auth-context';
+import './Header.scss'
 
 function Header(){
   const navigate = useNavigate();
-  const params = useParams();
-  const location = useLocation();
-  console.log(location)
-const isLogInPage = location.pathname.includes('login');
-const isRegisterPage = location.pathname.includes('register');
-console.log(isLogInPage);
-  
-  console.log(params);
+  const ctx = useContext(AuthContext);
 
   function getUserDetails(){
     //const {currentUser} = useAuthValue();
@@ -37,25 +28,32 @@ console.log(isLogInPage);
     navigate("");
   }
 
+  function logout(){
+    console.log("Logout function called");
+    // logoutUser();
+    ctx.logout();
+  }
+
   return(
-    <div className="header-container">
-      <div className="header-container-navicon" onClick={navigateToLandingPage}>
-        <i className="fa-sharp fa-solid fa-bars"></i>
-        <span>kanban</span>
-      </div>
-      <div className="header-container-navbuttons">
+          <div className="header-container">
+          <div className="header-container-navicon" onClick={navigateToLandingPage}>
+            <i className="fa-sharp fa-solid fa-bars"></i>
+            <span>kanban</span>
+          </div>
+          { !ctx.isLoggedIn && 
+          <div className="header-container-navbuttons">
+            <button onClick={navigateToLogin}> Login </button> 
+            <button onClick={navigateToSignUp}> Signup </button>
+          </div>
+          }
+          { ctx.isLoggedIn && 
+          <div className="header-container-navbuttons">
+            <button onClick={logout}> Logout </button>
+          </div>
+          }
+        </div>
+        )
 
-{!isLogInPage &&
- <button onClick={navigateToLogin}> Login </button>
- 
- }
-{!isRegisterPage &&
-    <button onClick={navigateToSignUp}> Signup </button>   
-}
-      </div>
-
-    </div>
-  )
 }
 
 

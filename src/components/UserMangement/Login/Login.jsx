@@ -1,6 +1,11 @@
 import "./Login.scss";
 import Card from "../../Card/Card";
+import AuthContext from "../../../context/auth-context";
+import { useContext } from "react";
+
 function Login() {
+
+  const ctx = useContext(AuthContext);
   return (
     <>
       <div className="login-wrapper">
@@ -30,7 +35,7 @@ function Login() {
               <div className="form-border"></div>
               <a href="#">Forgot password?</a>
               <br></br>
-              <button type="submit">LOGIN</button>
+              <button type="button" onClick={ctx.login}>LOGIN</button>
               <a href="#" id="signup">
                 Don't have account yet?
               </a>

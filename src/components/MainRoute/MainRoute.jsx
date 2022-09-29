@@ -9,8 +9,8 @@ import {   BrowserRouter as Router,
     Routes ,
     Route,
     Link} from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import {AuthProvider} from '../../context/Auth-context';
+import { useState, useEffect, useCallback } from 'react';
+import { AuthProvider } from '../../context/auth-context';
 import { onAuthStateChanged} from 'firebase/auth';
 import { auth } from "../../Firebase/firebase-config";
 
@@ -27,8 +27,8 @@ function MainRoute(){
     return (
         <>
             <Router>
-                <AuthProvider value={{currentUser}}>
-                <Header />
+                <AuthProvider>
+                <Header/>
                 <Routes>
                 <Route exact path="/" element={<LandingPage/>}/>
                 <Route exact path="/login" element={<Login/>}/>
