@@ -19,8 +19,6 @@ function Home(props){
     setPopupAction(true);
   }
 
-  console.log(" Params : ", match);
-
   return(
     <div className="home-component">
       <Sidenav currentBoard={id} />
