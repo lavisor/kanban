@@ -14,7 +14,7 @@ function TaskCard({task}){
 
     const taskDetails = getSubtaskDetails();
     return(
-        <div className="task-card">
+        <div className="task-card fade-in">
             <div className="task-title"> {task.title} </div>
             {taskDetails}
         </div>

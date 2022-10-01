@@ -1,6 +1,11 @@
+import { useContext } from "react";
+import { ThemeContext } from "../../context/theme-context";
 import "./AddTask.scss";
 
+
 function AddTask(){
+
+    const themeContext = useContext(ThemeContext);
 
     const titlePlaceHolder = "e.g. Take coffee break";
     const subtaskPlaceHolder = "e.g. Make coffee";
@@ -10,7 +15,8 @@ function AddTask(){
         <>
             <div className="form-item">
                 <div className="label-container">
-                    Title
+                   {themeContext.theme == "dark" && "Title dark" } 
+                   {themeContext.theme != "dark" && "Light" } 
                 </div>
                 <div className="input-container">
                     <input id="titleInput" type="text" placeholder={titlePlaceHolder} />

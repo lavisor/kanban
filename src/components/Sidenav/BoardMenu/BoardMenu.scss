@@ -22,3 +22,19 @@
 .create-new-board{
     color: $primary-color-purple;
 }
+
+.new-board-item {
+    display: flex;
+
+    .fa-solid {
+        margin: 8px 0px;
+    }
+
+    input {
+        margin: 0px 15px;
+    }
+
+    .fa-floppy-disk{
+        margin-right: 12px;
+    }
+}

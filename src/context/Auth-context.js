@@ -10,9 +10,10 @@ const AuthContext = React.createContext({
 export const AuthProvider = (props) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [ defaultBoard , setDefaultBoard ] = useState(1);
 
   const login = () => {
-    navigate("board");
+    navigate("board/"+defaultBoard);
     setIsLoggedIn(true); 
   }
 

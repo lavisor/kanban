@@ -1,20 +1,50 @@
 import './Sidenav.scss';
 import BoardWrapper from "./BoardWrapper/BoardWrapper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { dummyBoards } from "../../constants/constants";
 // import { BoardContext } from '../../context/board-context';
 
-function Sidenav(){
+function Sidenav({currentBoard}){
 
     const [boardList, setBoardList] = useState(dummyBoards);
 
     const [sidenavOpen , setSidenavOpen] = useState(false);
 
+    const [ enableEditField , setEnableEditField ] = useState(false)
+
+
+    useEffect(()=> {
+         const index = boardList.indexOf(boardList.filter(x => x.id == currentBoard)[0]);
+         console.log("Index: ", index);
+
+         if(index != -1 ){
+            setBoardList((prevVal) => {
+                let boards = [...prevVal];
+                boards.map( x=> {
+                    if(x.id === parseInt(currentBoard)){ 
+                        x.isActive = true;
+                    } else {
+                        x.isActive = false;
+                    }
+                    return x;
+                });
+                return boards;
+            })
+         } else {
+            setBoardList((prevVal) => {
+                let boards = [...prevVal];
+                boards[0].isActive = true;
+                return boards;
+            })
+         }
+
+    }, [])
+
     function setActive(index){
         setBoardList((prevVal) => {
             let boards = [...prevVal];
             boards.map( x=> {
-                if(x.id === parseInt(index)){
+                if(x.id === parseInt(index)){ 
                     x.isActive = true;
                 } else {
                     x.isActive = false;
@@ -23,6 +53,14 @@ function Sidenav(){
             });
             return boards;
         })
+    }
+
+    function toggleEdit(flag){
+        if(flag){
+            setEnableEditField(true);
+        } else {
+            setEnableEditField(false);
+        }
     }
 
     function toggleSideMenu(event){
@@ -37,9 +75,6 @@ function Sidenav(){
             document.getElementById("mainContainer").classList.remove("remove-margin");
             setSidenavOpen(true);
         }
-
-
-
     }
 
     return(
@@ -55,7 +90,7 @@ function Sidenav(){
                 <span className="heading">
                     ALL BOARDS (8)
                 </span>
-                    <BoardWrapper menu={boardList} setActive={setActive}/>
+                    <BoardWrapper menu={boardList} setActive={setActive} enableEditField={enableEditField} toggleEdit={toggleEdit} />
             </div>
         </div>
     )

@@ -3,7 +3,7 @@ import { dummyTask } from "../../constants/constants";
 import TaskCard from "../Task/TaskCard/TaskCard";
 import "./MainBoard.scss";
 
-function MainBoard(){
+function MainBoard({currentBoard}){
 
     const [ taskList , setTaskList] = useState(dummyTask);
     const [ todoList , setTodoList ] = useState([])
@@ -15,6 +15,8 @@ function MainBoard(){
         setDoingList( taskList.filter(x => x.status === "doing") );
         setDoneList(taskList.filter(x => x.status === "done")) ;
     }, [taskList])
+
+    console.log("Current board: ", currentBoard);
 
     return (
         <div className="main-board-container">

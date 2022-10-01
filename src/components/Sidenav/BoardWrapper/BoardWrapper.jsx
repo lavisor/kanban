@@ -2,20 +2,27 @@ import "./../BoardMenu/BoardMenu.scss";
 import BoardMenu from "./../BoardMenu/BoardMenu";
 
 function BoardWrapper(props){
-
-
+    
+    const { enableEditField, menu, toggleEdit } = props;
+    console.log("Menu: ", menu);
     function createNewBoard(){
         console.log("Create new Board");
     }
+
     let newBoardAdd = () =>{
         return(
-            <div className="board-item" >
+            <>
+            { enableEditField &&  <div className="board-item new-board-item fade-in" >
                 <i className="fa-solid fa-table-list"></i>
                 <input type="text"/> 
-                <i className="fa-solid fa-xmark"></i>
+                <i class="fa-solid fa-floppy-disk"></i>
+                <i className="fa-solid fa-xmark" onClick={()=>{ toggleEdit(false) }}></i>
             </div>
+            }
+            </>
         )
     }
+
     const menuitems = props.menu.map( x=> {
         return(
             <BoardMenu board={x} key={x.id} setActive={props.setActive}/>
@@ -27,9 +34,9 @@ function BoardWrapper(props){
            
             {menuitems}
             {newBoardAdd()}
-            <div className="board-item create-new-board" onClick={createNewBoard}>
+            <div className="board-item create-new-board fade-in" onClick={createNewBoard}>
                 <i className="fa-solid fa-table-list"></i>
-                <span onClick={(event) => console.log(event)}> + Create New Board</span>
+                <span onClick={()=>{ toggleEdit(true) }}> + Create New Board</span>
             </div>
         </div>
     )

@@ -29,7 +29,7 @@ button:hover{
     background: $primary-dark-blue;
 }
 
-input {
+input , select{
     padding: 8px;
     font-size: 14px;
     width: 100%;
@@ -49,3 +49,56 @@ textarea{
     border-radius: 4px; 
     color: $primary-font-color;
 }
+
+.fade-in {
+    animation-name: FadeIn;
+    animation-duration: 0.4s;
+    transition-timing-function: linear;
+  }
+  
+  @keyframes FadeIn {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px)
+    }
+  }
+  
+  @-moz-keyframes FadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-webkit-keyframes FadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-o-keyframes FadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-ms-keyframes FadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

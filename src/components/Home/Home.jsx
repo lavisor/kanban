@@ -3,11 +3,12 @@ import Sidenav from "./../Sidenav/Sidenav";
 import MainBoard from "./../MainBoard/MainBoard";
 import Popup from "../Popup/Popup";
 import AddTask from "../AddTask/AddTask";
+import { useParams } from 'react-router';
 import "./Home.scss";
-function Home(){
+function Home(props){
 
   const [popupAction , setPopupAction] = useState(false);
-
+  const { id } = useParams();
   function closePopup(){
     console.log("popup should close");
     setPopupAction(false);
@@ -18,15 +19,17 @@ function Home(){
     setPopupAction(true);
   }
 
+  console.log(" Params : ", match);
+
   return(
     <div className="home-component">
-      <Sidenav />
+      <Sidenav currentBoard={id} />
       <div id="mainContainer" className="main-container">
         <div className="inside-component">
           <div>
           <button onClick={openPopup}> + Add New Task </button>
           </div>
-          <MainBoard />
+          <MainBoard currentBoard={id} />
         </div>
       </div>
 
