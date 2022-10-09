@@ -1,30 +1,52 @@
 import "./Register.scss";
 import Card from "./../../Card/Card";
 import { useForm } from "react-hook-form";
+import { useState, useRef,useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import {
+  registerFormValidation,
+  confirmPasswordValidation,
+} from "../../../helper/formValidationHelper";
+import Input from "../../UI/Input";
 
 function Register() {
-  const formSchema = Yup.object().shape({
-    password: Yup.string()
-      .required("Password is mendatory")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
-      ),
-    confirmPwd: Yup.string()
-      .required("Password is mendatory")
-      .oneOf([Yup.ref("password")], "Passwords does not match"),
-    fname: Yup.string().required("First Name is mendatory"),
-    lname: Yup.string().required("Last Name is mendatory"),
-    email: Yup.string().required("Email is mendatory"),
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const [error, setError] = useState({
+    fnameError: "",
+    lnameError: "",
+    emailError: "",
+    passwordError: "",
+    confirmPasswordError: "",
   });
-  const formOptions = { resolver: yupResolver(formSchema) };
-  const { register, handleSubmit, reset, formState } = useForm(formOptions);
-  const { errors } = formState;
+  const [confirmPasswordError, setConformPasswordError] = useState(null);
+  const passwordRef = useRef(null);
+  // const confirmPasswordRef = useRef(null);
+  const onSubmit = (data) => {
+    // registerFormValidation();
+    console.log(data);
+  };
+  const inputHandler = (event) => {
+    setError(registerFormValidation(event, error));
+  };
 
-  const onSubmit = (data) => console.log(data);
-
+  // const confirmPasswordHandler = (event) => {
+  //   setConformPasswordError(
+  //     confirmPasswordValidation(event, passwordRef.current.value)
+  //   );
+  // };
+  // const validate = () => {
+  //   return fname.length & lname.length & email.length & password.length && confirmPassword.length && error.fnameError === "" && error.lnameError === "" && error.emailError === "" && error.passwordError === "" && error.confirmPasswordError === "" ? true : false;
+  // };
+  // useEffect(() => {
+  //   const isValid = validate();
+  //   setValid(isValid);
+  // }, [fname, lname,email, password, confirmPassword, error]);
   return (
     <>
       <div className="register-wrapper">
@@ -35,66 +57,85 @@ function Register() {
         <div className="right">
           <Card title={"REGISTER"}>
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
-              <input
+              <div className="form-field">
+                {/* <input
                 id="fname"
                 className="form-content"
                 type="text"
                 placeholder="Enter your first name."
                 name="fname"
                 {...register("fname", { required: true })}
+                onBlur={inputHandler}
               />
-              <span className="error-info">{errors.fname?.message}</span>
-              <br></br>
-              <input
-                id="last-name"
-                className="form-content"
-                type="text"
-                placeholder="Enter your last name."
-                name="lname"
-                {...register("lname", { required: true })}
-              />
-              <span className="error-info">{errors.lname?.message}</span>
-              {/* {errors.lname && <span className="error-info">This field is required</span>} */}
-              <br></br>
-              <input
-                id="email"
-                className="form-content"
-                type="email"
-                placeholder="Enter your email address."
-                name="email"
-                {...register("email", {
-                  required: true,
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: "invalid email address",
-                  },
-                })}
-              />
-              <span className="error-info">{errors.email?.message}</span>
-              <br></br>
-              <input
-                id="password"
-                type="password"
-                placeholder="Enter your password."
-                name="password"
-                {...register("password", { required: true })}
-                className="form-content"
-              />
-              <span className="error-info">{errors.password?.message}</span>
-              {/* {errors.password && <span className="error-info">This field is required</span>} */}
-              <br></br>
-              <input
+              {error && error.fnameError && <span className="error-info">{error.fnameError}</span>} */}
+                <Input
+                  id="fname"
+                  type="text"
+                  placeholder="Enter your first name."
+                  name="fname"
+                  register={register("fname", { required: true })}
+                  onBlur={inputHandler}
+                  error={error?.fnameError}
+                ></Input>
+              </div>
+
+              <div className="form-field">
+                <Input
+                  id="lname"
+                  type="text"
+                  placeholder="Enter your last name."
+                  name="lname"
+                  register={register("lname", { required: true })}
+                  onBlur={inputHandler}
+                  error={error?.lnameError}
+                ></Input>
+              </div>
+              <div className="form-field">
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Enter your email."
+                  name="email"
+                  register={register("email", { required: true })}
+                  onBlur={inputHandler}
+                  error={error?.emailError}
+                ></Input>
+              </div>
+  
+              <div className="form-field">
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Enter your password."
+                  name="password"
+                  register={register("password", { required: true })}
+                  onBlur={inputHandler}
+                  error={error?.passwordError}
+                ></Input>
+              </div>
+              {/* <input
                 id="confirmPwd"
                 className="form-content"
                 type="password"
                 placeholder="Confirm Password"
                 name="confirm-password"
                 {...register("confirmPwd", { required: true })}
+                onBlur={confirmPasswordHandler}
+               
               />
-              <span className="error-info">{errors.confirmPwd?.message}</span>
-              {/* {errors.confirmPwd && <span className="error-info">This field is required</span>} */}
+              {confirmPasswordError && <span className="error-info">{confirmPasswordError}</span>} */}
 
-              <br></br>
+              <div className="form-field">
+                <Input
+                  id="confirmPwd"
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="confirm-password"
+                  register={register("confirmPwd", { required: true })}
+                  onBlur={inputHandler}
+                  error={error?.confirmPwdError}
+                ></Input>
+              </div>
               <button type="submit">Sign Up</button>
               <small>
                 By Clicking on the button you are agreeing to our{" "}
