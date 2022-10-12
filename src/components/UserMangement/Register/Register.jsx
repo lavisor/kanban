@@ -24,29 +24,77 @@ function Register() {
     passwordError: "",
     confirmPasswordError: "",
   });
-  const [confirmPasswordError, setConformPasswordError] = useState(null);
-  const passwordRef = useRef(null);
-  // const confirmPasswordRef = useRef(null);
-  const onSubmit = (data) => {
+ const [enteredFname, setEnteredFname] = useState("");
+  const [enteredLname, setEnteredLname] = useState("");
+  const [enteredEmail, setEnteredEmail] = useState("");
+  const [enteredPassword, setEnteredPassword] = useState("");
+  const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
+
+  const [isValid, setValid] = useState(false);
+  const fnameRef = useRef();
+  const lnameRef = useRef();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const confirmPasswordRef = useRef();
+
+  const onSubmit = () => {
     // registerFormValidation();
-    console.log(data);
+    console.log("submit",isValid);
+    if(isValid){
+      console.log("submit");
+    }
+    else if(enteredFname.length==0 || error?.fnameError !=""){
+      console.log("fname");
+      console.log("fname",fnameRef.current.value);
+      fnameRef.current.focus();
+    }
+    else if(enteredLname.length==0 || error?.lnameError !=""){
+      lnameRef.current.focus();
+    }
+    else if(enteredEmail.length==0 || error?.emailError !=""){
+      emailRef.current.focus();
+    }
+    else if(enteredPassword.length== 0 || error?.passwordError !=""){
+      passwordRef.current.focus();
+    }
+    else if(enteredConfirmPassword.length==0 || error?.confirmPasswordError !=""){
+      confirmPasswordRef.current.focus();
+    }
   };
   const inputHandler = (event) => {
     setError(registerFormValidation(event, error));
   };
 
-  // const confirmPasswordHandler = (event) => {
-  //   setConformPasswordError(
-  //     confirmPasswordValidation(event, passwordRef.current.value)
-  //   );
-  // };
-  // const validate = () => {
-  //   return fname.length & lname.length & email.length & password.length && confirmPassword.length && error.fnameError === "" && error.lnameError === "" && error.emailError === "" && error.passwordError === "" && error.confirmPasswordError === "" ? true : false;
-  // };
-  // useEffect(() => {
-  //   const isValid = validate();
-  //   setValid(isValid);
-  // }, [fname, lname,email, password, confirmPassword, error]);
+  const validate = () => {
+    console.log("enteredFname.length",enteredFname.length,!error?.fnameError);
+    console.log("enteredLname.length",enteredLname.length,!error?.lnameError);
+    console.log("enteredEmail.length",enteredEmail.length,!error?.emailError);
+    console.log("enteredPassword.length",enteredPassword.length,!error?.passwordError);
+    console.log("enteredConfirmPassword.length",enteredConfirmPassword.length,!error?.confirmPasswordError);
+    return  enteredFname.length && enteredLname.length && enteredEmail.length && enteredPassword.length &&enteredConfirmPassword.length && !error?.fnameError && !error?.lnameError  && !error?.emailError && !error?.passwordError && !error?.confirmPasswordError;
+  };
+  useEffect(() => {
+    const isValid = validate();
+    console.log("useEffect",isValid);
+    setValid(isValid);
+  }, [enteredFname,enteredLname,enteredEmail,enteredPassword, enteredConfirmPassword, error]);
+  
+  const fnameChangeHandler = (event)=>{
+    setEnteredFname(event.target.value);
+  }
+  const lnameChangeHandler = (event)=>{
+    setEnteredLname(event.target.value);
+  }
+  const emailChangeHandler = (event)=>{
+    setEnteredEmail(event.target.value);
+  }
+  const passwordChangeHandler = (event)=>{
+    setEnteredPassword(event.target.value);
+  }
+  const confirmPasswordChangeHandler = (event)=>{
+    setEnteredConfirmPassword(event.target.value);
+  }
+ 
   return (
     <>
       <div className="register-wrapper">
@@ -56,24 +104,16 @@ function Register() {
         </div>
         <div className="right">
           <Card title={"REGISTER"}>
-            <form className="form" onSubmit={handleSubmit(onSubmit)}>
+            <div className="form">
               <div className="form-field">
-                {/* <input
-                id="fname"
-                className="form-content"
-                type="text"
-                placeholder="Enter your first name."
-                name="fname"
-                {...register("fname", { required: true })}
-                onBlur={inputHandler}
-              />
-              {error && error.fnameError && <span className="error-info">{error.fnameError}</span>} */}
                 <Input
                   id="fname"
                   type="text"
                   placeholder="Enter your first name."
                   name="fname"
+                  ref={fnameRef}
                   register={register("fname", { required: true })}
+                  onChange={fnameChangeHandler}
                   onBlur={inputHandler}
                   error={error?.fnameError}
                 ></Input>
@@ -85,7 +125,9 @@ function Register() {
                   type="text"
                   placeholder="Enter your last name."
                   name="lname"
+                  ref={lnameRef}
                   register={register("lname", { required: true })}
+                  onChange={lnameChangeHandler}
                   onBlur={inputHandler}
                   error={error?.lnameError}
                 ></Input>
@@ -96,7 +138,9 @@ function Register() {
                   type="email"
                   placeholder="Enter your email."
                   name="email"
+                  ref={emailRef}
                   register={register("email", { required: true })}
+                  onChange={emailChangeHandler}
                   onBlur={inputHandler}
                   error={error?.emailError}
                 ></Input>
@@ -108,22 +152,13 @@ function Register() {
                   type="password"
                   placeholder="Enter your password."
                   name="password"
+                  ref={passwordRef}
                   register={register("password", { required: true })}
+                  onChange={passwordChangeHandler}
                   onBlur={inputHandler}
                   error={error?.passwordError}
                 ></Input>
               </div>
-              {/* <input
-                id="confirmPwd"
-                className="form-content"
-                type="password"
-                placeholder="Confirm Password"
-                name="confirm-password"
-                {...register("confirmPwd", { required: true })}
-                onBlur={confirmPasswordHandler}
-               
-              />
-              {confirmPasswordError && <span className="error-info">{confirmPasswordError}</span>} */}
 
               <div className="form-field">
                 <Input
@@ -131,19 +166,21 @@ function Register() {
                   type="password"
                   placeholder="Confirm Password"
                   name="confirm-password"
+                  ref={confirmPasswordRef}
                   register={register("confirmPwd", { required: true })}
+                  onChange={confirmPasswordChangeHandler}
                   onBlur={inputHandler}
                   error={error?.confirmPwdError}
                 ></Input>
               </div>
-              <button type="submit">Sign Up</button>
+              <button type="submit" onClick={onSubmit}>Sign Up</button>
               <small>
                 By Clicking on the button you are agreeing to our{" "}
                 <a href="#" id="signup">
                   tearms and conditions.
                 </a>
               </small>
-            </form>
+            </div>
           </Card>
         </div>
       </div>

@@ -2,7 +2,6 @@
 export function registerFormValidation(event,error){
     event.preventDefault();
     const parentDiv = event.target.parentNode;
-    console.log(event);
     // get password and confirm password
    // const password = event.target.password.value;
    // const password = parentDiv.querySelector('#password').value;
