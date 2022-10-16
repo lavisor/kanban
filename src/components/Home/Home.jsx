@@ -12,6 +12,7 @@ function Home(props){
   function closePopup(){
     console.log("popup should close");
     setPopupAction(false);
+    console.log("test");
   }
 
   function openPopup(){
