@@ -1,7 +1,8 @@
 import "./Register.scss";
 import Card from "./../../Card/Card";
 import { useForm } from "react-hook-form";
-import { useState, useRef,useEffect } from "react";
+import AuthContext from "../../../context/auth-context";
+import {useContext, useState, useRef,useEffect, React } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import {
@@ -24,6 +25,7 @@ function Register() {
     passwordError: "",
     confirmPasswordError: "",
   });
+  const ctx = useContext(AuthContext);
  const [enteredFname, setEnteredFname] = useState("");
   const [enteredLname, setEnteredLname] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -31,33 +33,35 @@ function Register() {
   const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
 
   const [isValid, setValid] = useState(false);
-  const fnameRef = useRef();
+  const fnameRef = useRef(null);
   const lnameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
-
+  
   const onSubmit = () => {
     // registerFormValidation();
-    console.log("submit",isValid);
     if(isValid){
       console.log("submit");
+      ctx.register();
+
     }
-    else if(enteredFname.length==0 || error?.fnameError !=""){
-      console.log("fname");
-      console.log("fname",fnameRef.current.value);
+    else if(enteredFname.length==0 || error?.fnameError !=undefined){
+      console.log("fname",error?.fnameError);
+      // console.log("fname");
+      // console.log("fname",fnameRef.current.value);
       fnameRef.current.focus();
     }
-    else if(enteredLname.length==0 || error?.lnameError !=""){
+    else if(enteredLname.length==0 || error?.lnameError !=undefined){
       lnameRef.current.focus();
     }
-    else if(enteredEmail.length==0 || error?.emailError !=""){
+    else if(enteredEmail.length==0 || error?.emailError !=undefined){
       emailRef.current.focus();
     }
-    else if(enteredPassword.length== 0 || error?.passwordError !=""){
+    else if(enteredPassword.length== 0 || error?.passwordError !=undefined){
       passwordRef.current.focus();
     }
-    else if(enteredConfirmPassword.length==0 || error?.confirmPasswordError !=""){
+    else if(enteredConfirmPassword.length==0 || error?.confirmPasswordError !=undefined){
       confirmPasswordRef.current.focus();
     }
   };
@@ -66,16 +70,11 @@ function Register() {
   };
 
   const validate = () => {
-    console.log("enteredFname.length",enteredFname.length,!error?.fnameError);
-    console.log("enteredLname.length",enteredLname.length,!error?.lnameError);
-    console.log("enteredEmail.length",enteredEmail.length,!error?.emailError);
-    console.log("enteredPassword.length",enteredPassword.length,!error?.passwordError);
-    console.log("enteredConfirmPassword.length",enteredConfirmPassword.length,!error?.confirmPasswordError);
     return  enteredFname.length && enteredLname.length && enteredEmail.length && enteredPassword.length &&enteredConfirmPassword.length && !error?.fnameError && !error?.lnameError  && !error?.emailError && !error?.passwordError && !error?.confirmPasswordError;
   };
   useEffect(() => {
     const isValid = validate();
-    console.log("useEffect",isValid);
+   // console.log("useEffect",isValid);
     setValid(isValid);
   }, [enteredFname,enteredLname,enteredEmail,enteredPassword, enteredConfirmPassword, error]);
   
@@ -114,9 +113,13 @@ function Register() {
                   ref={fnameRef}
                   register={register("fname", { required: true })}
                   onChange={fnameChangeHandler}
-                  onBlur={inputHandler}
+                //  onFoucs={inputHandler}
+                   onBlur={inputHandler}
                   error={error?.fnameError}
                 ></Input>
+                {/* {error?.fnameError && (
+                  <span className="error">{error?.fnameError}</span>
+                )} */}
               </div>
 
               <div className="form-field">

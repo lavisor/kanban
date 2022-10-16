@@ -1,9 +1,14 @@
+@import "../../variables.scss";
+
 .fst-container{
     background-image: url(../../assets/images/landing-page-background.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
+    padding-bottom: 96px;
+    padding-top: 20px;
+   
 }
 .inner-container{  
 width: 100%;
@@ -24,6 +29,7 @@ height: 100%;
     display: flex;
     flex-direction: column;
     max-width: 50%;
+
 }
 .text-container{
     margin-top: 10%;
@@ -55,13 +61,11 @@ height: 100%;
     flex-wrap: nowrap;
     margin-top: 10%;
     margin-bottom: 10%;
-    margin-left: 10%;
+    margin-left: 0px;
     // margin-right: 10%;
     max-width: 50%;
 
 }
-
-
 
 .right-container img{
     width: 100%;
@@ -69,11 +73,226 @@ height: 100%;
     object-fit: cover;
 }
 
+@media screen and (min-width:2000px)  {
+    .left-container{
+       margin-left: 20%;
+    }
+    .right-container{
+        margin-right: 20%;
+        margin-left: 0px;
+    }
+}
    
+@media only screen and (max-device-width: 480px) {
+    .left-container{
+        margin-left: 10px;
+        margin-right: 10px;
+        max-width: 100%;
+    }
+    .right-container{
+        margin-left: 10px;
+        margin-right: 10px;
+        max-width: 100%;
+    }
+    .text-container{
+        margin-left: 0px;
+        margin-right: 0px;
+        max-width: 100%;
+    }
+    .inner-container{
+        flex-direction: column;
+        margin: 0px auto;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .left-container h1{
+        font-size: 2rem;
+    }
+    .left-container p{
+        font-size: 1rem;
+    }
+  
+ }
 
 
+// second container style
+
+.second-container{
+    
+    box-shadow: 0 10px 14px rgb(0 0 0 / 10%);
+    position: relative;
+    z-index: 2;
+    padding-bottom: 32px;
+    padding-top: 32px;
+    padding: 16px 0;
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.second-inner-container{
+    margin: 0 auto;
+    margin-top: 40px;
+    max-width: 1440px;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.overview-img-container{
+    box-shadow: 0 10px 14px rgba(0, 0, 0, 0.87);
+    background-image: url(../../assets/images/overview.PNG);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 460px;
+    width:1000px;
+ 
+    margin-bottom: 32px;
+}
+.text-center{
+    text-align: center;
+    padding-bottom: 32px;
+    padding-top: 32px;
+}
+.text-center h2{
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+}
+.text-center p{
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #fff;
+}
+.third-container{
+    box-shadow: 0 10px 14px rgb(0 0 0 / 10%);
+    position: relative;
+    z-index: 2;
+    padding-bottom: 32px;
+    padding-top: 32px;
+    padding: 16px 0;
+    margin-right: auto;
+    margin-left: auto;
+    clear: both;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.third-inner-container{
+    margin: 0 auto;
+    margin-top: 40px;
+    max-width: 1440px;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.image-text-container-one p{
+    font-size: 1.2rem;
+    font-weight: 200;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.image-text-container-one h1::before{
+    content: "";
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    margin-right: 16px;
+    vertical-align: bottom;
+    background-image: url(https://play-lh.googleusercontent.com/N2odrm1jiatk3U_xXkRzrkNOevFNIjJXo5ggd1pIDFCq6Tij2nvz_c0Kp8ha5bzWEw);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.image-text-container-two p{
+    font-size: 1.2rem;
+    font-weight: 200;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.image-text-container-two h1::before{
+    content: "";
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    margin-right: 16px;
+    vertical-align: bottom;
+    background-image: url(https://wac-cdn.atlassian.com/dam/jcr:207484ca-977f-46a9-97ab-380e4ddcbfcc/TrelloLists-DkNeutral-1.svg?cdnVersion=582);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #fff;
+}
+
+.image-text-container-three p{
+    font-size: 1.2rem;
+    font-weight: 200;
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.image-text-container-three h1::before{
+    content: "";
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    margin-right: 16px;
+    vertical-align: bottom;
+    background-image: url(https://wac-cdn.atlassian.com/dam/jcr:03f8a7ac-1064-4739-97ed-e51fb0c3a8ef/GraphLine-DkNeutral.svg?cdnVersion=582);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: #fff;
+}
 
 
+.fourth-container{
+    background-color: #0b066e13;
+    box-shadow: 0 10px 14px rgb(0 0 0 / 10%);
+    position: relative;
+    z-index: 2;
+    padding-bottom: 32px;
+    padding-top: 32px;
+    padding: 16px 0;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    clear: both;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 
-
-
+.fourth-inner-container{
+    margin: 0 auto;
+    margin-top: 40px;
+    max-width: 1440px;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

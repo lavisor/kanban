@@ -37,7 +37,7 @@
     border: 1px solid #ccc;
   }
   
-  .control input:focus {
+  input:focus {
     outline: none;
     border-color: #4f005f;
     //background: #f6dbfc;
@@ -47,7 +47,11 @@
     border-color: red;
    // background: #fbdada;
   }
-  
+  // .error-info{
+  //   color: red;
+  //   font-size: 13px;
+  //   line-height: 22px;
+  // }
   @media (min-width: 768px) {
     .control {
       align-items: center;
