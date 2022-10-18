@@ -1,4 +1,5 @@
-import "./Login.scss";
+//import "./Login.scss";
+import "../../GlobalStyle/auth.scss";
 import Card from "../../Card/Card";
 import AuthContext from "../../../context/auth-context";
 import { useContext, useEffect,useState, useRef,useReducer } from "react";
@@ -69,7 +70,7 @@ function Login() {
   }
   return (
     <>
-      <div className="login-wrapper">
+      <div className="wrapper">
         <div className="left">
           <span className="header-left">Learn to code by watching others</span>
           <span className="info-left">See how experienced developer solve problems in real-time. Watching scripted tutorial is great but understanding how developer think is invaluable.</span>
@@ -87,7 +88,7 @@ function Login() {
                  register={register("email", { required: true })}
                 error = {error?.emailError}
                 onChange={emailChangeHandler}
-                onBlur={inputHandler}
+                onInput={inputHandler}
               ></Input>
                 </div>
              
