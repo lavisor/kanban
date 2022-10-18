@@ -1,4 +1,5 @@
-import "./Register.scss";
+//import "./Register.scss";
+import "../../GlobalStyle/auth.scss";
 import Card from "./../../Card/Card";
 import { useForm } from "react-hook-form";
 import AuthContext from "../../../context/auth-context";
@@ -96,7 +97,7 @@ function Register() {
  
   return (
     <>
-      <div className="register-wrapper">
+      <div className="wrapper">
         <div className="left">
           <h1>Game of Thrones</h1>
           <h3>Welcome to Dragonstone</h3>
@@ -114,7 +115,7 @@ function Register() {
                   register={register("fname", { required: true })}
                   onChange={fnameChangeHandler}
                 //  onFoucs={inputHandler}
-                   onBlur={inputHandler}
+                   onInput={inputHandler}
                   error={error?.fnameError}
                 ></Input>
                 {/* {error?.fnameError && (
