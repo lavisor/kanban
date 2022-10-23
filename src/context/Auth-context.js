@@ -25,6 +25,7 @@ export const AuthProvider = (props) => {
   const register = () => {
     navigate("Registerd");
     setIsRegistered(true);
+    navigate("login");
   }
   return (
     <AuthContext.Provider value={{isLoggedIn, login, logout, register}}>

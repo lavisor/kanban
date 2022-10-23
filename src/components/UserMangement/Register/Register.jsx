@@ -11,6 +11,10 @@ import {
   confirmPasswordValidation,
 } from "../../../helper/formValidationHelper";
 import Input from "../../UI/Input";
+import { REGISTER_CONFIG } from "../../../helper/config";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Register() {
   const {
@@ -44,8 +48,18 @@ function Register() {
     // registerFormValidation();
     if(isValid){
       console.log("submit");
-      ctx.register();
-
+      REGISTER_CONFIG(enteredFname,enteredLname,enteredEmail,enteredPassword, enteredConfirmPassword).then((response)=>{
+        console.log(response);
+        toast.success('Registered Successfully !', {
+          position: toast.POSITION.TOP_RIGHT
+      });
+        ctx.register();
+      }).catch((error)=>{
+        toast.error(`${error.response.data}`, {
+          position: toast.POSITION.TOP_CENTER
+      });
+        console.log(error);
+      })
     }
     else if(enteredFname.length==0 || error?.fnameError !=undefined){
       console.log("fname",error?.fnameError);
@@ -97,6 +111,7 @@ function Register() {
  
   return (
     <>
+    <ToastContainer />
       <div className="wrapper">
         <div className="left">
           <h1>Game of Thrones</h1>

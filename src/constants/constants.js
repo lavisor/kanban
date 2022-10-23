@@ -29,4 +29,9 @@ const dummyBoards = [
     { "id": 3, "name":"Roadmap", isActive: false}
 ]
 
+export const LOGIN_URL = "http://localhost:4999/auth/login";
+export const REGISTER_URL = "http://localhost:4999/auth/signup";
+//export const REQUEST_PASSWORD_URL = "http://localhost:4999/auth/forgot-password";
+export const CREATEBOARD_URL = "http://localhost:4999/board/";
+export const GETALLBOARDS_URL = "http://localhost:4999/board/";
 export {dummyTask, dummyBoards} 

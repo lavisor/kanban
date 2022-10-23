@@ -7,6 +7,7 @@ import Input from "../../UI/Input";
 import { useForm } from "react-hook-form";
 import { registerFormValidation } from "../../../helper/formValidationHelper";
 import { useNavigate   } from 'react-router-dom';
+import { LOGIN_CONFIG } from '../../../helper/config';
 
 function Login() {
   const {
@@ -32,7 +33,17 @@ function Login() {
   
     if(isValid){
       console.log("submit");
-     ctx.login();
+      LOGIN_CONFIG(enteredEmail,enteredPassword).then((response)=>{
+        console.log(response);
+        localStorage.setItem('token', response.token);
+        ctx.login();
+        // if(response.status === 200){
+          
+         
+        // }
+      }).catch((error)=>{
+        console.log(error);
+      })
     }
    
     else if(enteredEmail.length==0 || error?.emailError !=undefined){
