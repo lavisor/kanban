@@ -49,11 +49,11 @@ function Register() {
     if(isValid){
       console.log("submit");
       REGISTER_CONFIG(enteredFname,enteredLname,enteredEmail,enteredPassword, enteredConfirmPassword).then((response)=>{
-        console.log(response);
+       // console.log(response);
         toast.success('Registered Successfully !', {
-          position: toast.POSITION.TOP_RIGHT
+          position: toast.POSITION.TOP_CENTER
       });
-        ctx.register();
+       ctx.register();
       }).catch((error)=>{
         toast.error(`${error.response.data}`, {
           position: toast.POSITION.TOP_CENTER
@@ -111,7 +111,6 @@ function Register() {
  
   return (
     <>
-    <ToastContainer />
       <div className="wrapper">
         <div className="left">
           <h1>Game of Thrones</h1>

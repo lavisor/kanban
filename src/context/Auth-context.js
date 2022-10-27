@@ -14,11 +14,13 @@ export const AuthProvider = (props) => {
   const [ defaultBoard , setDefaultBoard ] = useState(1);
 
   const login = () => {
+    
     navigate("board/"+defaultBoard);
     setIsLoggedIn(true); 
   }
 
   const logout = () => {
+    localStorage.removeItem('token');
     navigate("login");
     setIsLoggedIn(false); 
   }

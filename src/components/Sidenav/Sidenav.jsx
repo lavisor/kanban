@@ -19,14 +19,15 @@ function Sidenav({currentBoard}){
     },[])
     
     function fetchBoardList(){
-        const token = localStorage.getItem('token');
-        getAllBoards_config(token).then((response)=>{
+       // const token = localStorage.getItem('token');
+        getAllBoards_config().then((response)=>{
            // console.log(response);
             setBoardList(response);
 
         }).catch((error)=>{
             console.log(error);
         })
+
     }
     useEffect(()=> {
         if(boardList.length > 0){
@@ -56,7 +57,7 @@ function Sidenav({currentBoard}){
         }
          
 
-    }, [boardList,currentBoard])
+    }, [])
 
     function setActive(index){
         setBoardList((prevVal) => {
@@ -106,10 +107,10 @@ function Sidenav({currentBoard}){
             </div>
             <div className="sidenav-contianer-menus">
                 <span className="heading">
-                    ALL BOARDS (8)
+                    ALL BOARDS ({boardList.length})
                 </span>
              
-                    <BoardWrapper menu={boardList} setActive={setActive} enableEditField={enableEditField} toggleEdit={toggleEdit} />
+                    <BoardWrapper menu={boardList} setActive={setActive} enableEditField={enableEditField} toggleEdit={toggleEdit} fetchBoardList={fetchBoardList} />
             </div>
         </div>
     )

@@ -1,7 +1,8 @@
 import {LOGIN_URL, REGISTER_URL, CREATEBOARD_URL, GETALLBOARDS_URL} from '../constants/constants';
 import {httpRequest} from '../Utils/httpRequest/httpRequest';
+import { getToken } from './helper';
 
-
+const TOKEN = getToken();
 export const LOGIN_CONFIG = async (emailid, password) => {
     const config = {
       method: 'POST',
@@ -38,7 +39,7 @@ export const LOGIN_CONFIG = async (emailid, password) => {
     }
   };
 
-  export const CREATEBOARD_CONFIG = async (boardname,TOKEN) => {
+  export const CREATEBOARD_CONFIG = async (boardname) => {
     const config = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: '*/*',Authorization: `Bearer ${TOKEN}` },
@@ -53,7 +54,7 @@ export const LOGIN_CONFIG = async (emailid, password) => {
     }
   };
 
-  export const getAllBoards_config = async (TOKEN) => {
+  export const getAllBoards_config = async () => {
     const config = {
       method: 'GET',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json', Authorization: `Bearer ${TOKEN}` },

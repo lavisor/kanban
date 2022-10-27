@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import { registerFormValidation } from "../../../helper/formValidationHelper";
 import { useNavigate   } from 'react-router-dom';
 import { LOGIN_CONFIG } from '../../../helper/config';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   const {
@@ -34,14 +36,21 @@ function Login() {
     if(isValid){
       console.log("submit");
       LOGIN_CONFIG(enteredEmail,enteredPassword).then((response)=>{
-        console.log(response);
+       // console.log(response);
+        toast.success('logged In Successfully !', {
+          position: toast.POSITION.TOP_CENTER
+      });
         localStorage.setItem('token', response.token);
         ctx.login();
+
         // if(response.status === 200){
           
          
         // }
       }).catch((error)=>{
+        toast.error(`${error.response.data}`, {
+          position: toast.POSITION.TOP_CENTER
+      });
         console.log(error);
       })
     }

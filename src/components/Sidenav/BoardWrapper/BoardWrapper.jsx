@@ -2,6 +2,8 @@ import "./../BoardMenu/BoardMenu.scss";
 import BoardMenu from "./../BoardMenu/BoardMenu";
 import { CREATEBOARD_CONFIG } from "../../../helper/config";
 import { useRef } from 'react';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function BoardWrapper(props){
     
     const { enableEditField, menu, toggleEdit } = props;
@@ -18,11 +20,21 @@ function BoardWrapper(props){
        // console.log("Save Board Name");
         let boardName = boardNameRef.current.value;
       //  console.log(boardName);
-        const token = localStorage.getItem('token');
-        CREATEBOARD_CONFIG(boardName, token).then((response)=>{
-            console.log(response);
+      //  const token = localStorage.getItem('token');
+        CREATEBOARD_CONFIG(boardName).then((response)=>{
+           // console.log(response);
+            //close the inputbox
+            toast.success('Board Created Successfully !', {
+                position: toast.POSITION.TOP_CENTER
+            });
+            toggleEdit(false);
+            //update the board list
+            props.fetchBoardList();
         }
         ).catch((error)=>{
+            toast.error(`${error.response.data}`, {
+                position: toast.POSITION.TOP_CENTER
+            });
             console.log(error);
         })
     }
