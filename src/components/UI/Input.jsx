@@ -23,7 +23,7 @@ const Input = React.forwardRef(
                 {...props.register}
                 onChange={props.onChange}
                 // onFoucs = {props.onFoucs}
-                 onBlur={props.onBlur}
+                onInput={props.onInput}
                 ref={inputRef}
             />
             {props.error && <span className="error-info">{props.error}</span>}

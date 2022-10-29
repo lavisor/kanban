@@ -1,4 +1,5 @@
-import "./Login.scss";
+//import "./Login.scss";
+import "../../GlobalStyle/auth.scss";
 import Card from "../../Card/Card";
 import AuthContext from "../../../context/auth-context";
 import { useContext, useEffect,useState, useRef,useReducer } from "react";
@@ -6,6 +7,9 @@ import Input from "../../UI/Input";
 import { useForm } from "react-hook-form";
 import { registerFormValidation } from "../../../helper/formValidationHelper";
 import { useNavigate   } from 'react-router-dom';
+import { LOGIN_CONFIG } from '../../../helper/config';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   const {
@@ -31,7 +35,24 @@ function Login() {
   
     if(isValid){
       console.log("submit");
-     ctx.login();
+      LOGIN_CONFIG(enteredEmail,enteredPassword).then((response)=>{
+       // console.log(response);
+        toast.success('logged In Successfully !', {
+          position: toast.POSITION.TOP_CENTER
+      });
+        localStorage.setItem('token', response.token);
+        ctx.login();
+
+        // if(response.status === 200){
+          
+         
+        // }
+      }).catch((error)=>{
+        toast.error(`${error.response.data}`, {
+          position: toast.POSITION.TOP_CENTER
+      });
+        console.log(error);
+      })
     }
    
     else if(enteredEmail.length==0 || error?.emailError !=undefined){
@@ -69,7 +90,7 @@ function Login() {
   }
   return (
     <>
-      <div className="login-wrapper">
+      <div className="wrapper">
         <div className="left">
           <span className="header-left">Learn to code by watching others</span>
           <span className="info-left">See how experienced developer solve problems in real-time. Watching scripted tutorial is great but understanding how developer think is invaluable.</span>
@@ -87,7 +108,7 @@ function Login() {
                  register={register("email", { required: true })}
                 error = {error?.emailError}
                 onChange={emailChangeHandler}
-                onBlur={inputHandler}
+                onInput={inputHandler}
               ></Input>
                 </div>
              
